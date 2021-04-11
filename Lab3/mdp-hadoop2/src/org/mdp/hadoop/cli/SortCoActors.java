@@ -52,7 +52,7 @@ public class SortCoActors {
         @Override
         public void map(Object key, Text value, Context output)
                 throws IOException, InterruptedException {
-            String[] split = value.toString().split("\t");
+            String[] split = value.toString().split("\\s+\\s|\\t");
             output.write(new DescendingIntWritable(Integer.parseInt(split[1])),new Text(split[0]));
         }
     }

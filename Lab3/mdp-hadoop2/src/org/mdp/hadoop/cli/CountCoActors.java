@@ -28,7 +28,7 @@ public class CountCoActors {
 	 * Use this with line.split(SPLIT_REGEX) to get fairly nice
 	 * word splits.
 	 */
-	public static String SPLIT_REGEX = "\t";
+	public static String SPLIT_REGEX = "\\t+";
 
 	/**
 	 * This is the Mapper Class. This sends key-value pairs to different machines

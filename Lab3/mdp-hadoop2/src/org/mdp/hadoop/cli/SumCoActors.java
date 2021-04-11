@@ -1,9 +1,6 @@
 package org.mdp.hadoop.cli;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FSDataInputStream;
-import org.apache.hadoop.fs.FSDataOutputStream;
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -22,7 +19,7 @@ public class SumCoActors {
      * Use this with line.split(SPLIT_REGEX) to get fairly nice
      * word splits.
      */
-    public static String SPLIT_REGEX = "\t";
+    public static String SPLIT_REGEX = "\\s+\\s|\\t";
 
     /**
      * This is the Mapper Class. This sends key-value pairs to different machines
@@ -59,12 +56,8 @@ public class SumCoActors {
                 throws IOException, InterruptedException {
             String line = value.toString();
             String[] rawWords = line.split(SPLIT_REGEX);
-            for(String rawWord:rawWords) {
-                if(!rawWord.isEmpty()){
-                    word.set(rawWord);
-                    output.write(word, one);
-                }
-            }
+            word.set(rawWords[0]);
+            output.write(word, one);
         }
     }
 
