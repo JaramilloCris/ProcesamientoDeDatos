@@ -28,7 +28,7 @@ public class CountCoActors {
 	 * Use this with line.split(SPLIT_REGEX) to get fairly nice
 	 * word splits.
 	 */
-	public static String SPLIT_REGEX = "\\t+";
+	public static String SPLIT_REGEX = "\t";
 
 	/**
 	 * This is the Mapper Class. This sends key-value pairs to different machines
@@ -99,6 +99,7 @@ public class CountCoActors {
 	 */
 	public static class CountCoActorsReducer extends Reducer<Text, Text, Text, IntWritable> {
 
+		private final IntWritable one = new IntWritable(1);
 		private Text word = new Text();
 
 		/**
@@ -123,7 +124,7 @@ public class CountCoActors {
 					String llave = actor + "##" + actores.get(a);
 					a+=1;
 					word.set(llave);
-					output.write(word, new IntWritable(1));
+					output.write(word, one);
 				}
 				a = b;
 				b+=1;
@@ -161,8 +162,6 @@ public class CountCoActors {
 
 		System.out.println("Seteando mapa");
 		job.setMapperClass(CountCoActors.CountCoActorsMapper.class);
-		System.out.println("Seteando Combiner");
-		job.setCombinerClass(CountCoActorsReducer.class); // in this case a combiner is possible!
 		System.out.println("Seteando Reducer");
 		job.setReducerClass(CountCoActorsReducer.class);
 

@@ -22,8 +22,7 @@ public class SumCoActors {
      * Use this with line.split(SPLIT_REGEX) to get fairly nice
      * word splits.
      */
-    public static String SPLIT_REGEX = "[^\\p{L}]+";
-    public static final String FILE_NAME = "imdb-stars.tsv";
+    public static String SPLIT_REGEX = "\t";
 
     /**
      * This is the Mapper Class. This sends key-value pairs to different machines

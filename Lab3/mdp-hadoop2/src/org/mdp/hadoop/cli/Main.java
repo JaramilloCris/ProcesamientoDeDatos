@@ -23,8 +23,8 @@ public class Main {
 				StringBuffer sb = new StringBuffer();
 				sb.append("missing <utility> arg where <utility> one of");
 				sb.append("\n\t"+ CountCoActors.class.getSimpleName()+": Count the words in a file");
-				//sb.append("\n\t"+ SumCoActors.class.getSimpleName()+": Sum the values of co actors");
-				//sb.append("\n\t"+ SortCoActors.class.getSimpleName()+": Sort words by count descendin");
+				sb.append("\n\t"+ SumCoActors.class.getSimpleName()+": Sum the values of co actors");
+				sb.append("\n\t"+ SortCoActors.class.getSimpleName()+": Sort words by count descendin");
 				usage(sb.toString());
 			}
 

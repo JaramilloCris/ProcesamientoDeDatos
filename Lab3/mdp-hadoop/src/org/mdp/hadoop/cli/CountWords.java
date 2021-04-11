@@ -139,7 +139,7 @@ public class CountWords {
 	    job.setMapOutputValueClass(IntWritable.class);
 	    
 	    job.setMapperClass(CountWordsMapper.class);
-	    job.setCombinerClass(CountWordsReducer.class); // in this case a combiner is possible!
+	    job.setCombinerClass(CountWordsReducer.class);
 	    job.setReducerClass(CountWordsReducer.class);
 	     
 	    job.setJarByClass(CountWords.class);

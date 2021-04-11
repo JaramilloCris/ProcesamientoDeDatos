@@ -24,7 +24,6 @@ public class Main {
 				sb.append("missing <utility> arg where <utility> one of");
 				sb.append("\n\t"+CountWords.class.getSimpleName()+": Count the words in a file");
 				sb.append("\n\t"+SortWordCounts.class.getSimpleName()+": Sort words by count descendin");
-
 				usage(sb.toString());
 			}
 
