@@ -67,7 +67,7 @@ public class CountCoActors {
 			// ['La Veneno', Cristina, La venganza de la Veneno, 1997, null, VIDEO_MOVIE, null, 1, null, FEMALE]
 			String[] element = line.split(SPLIT_REGEX);
 
-			if (element[4].equals("THEATRICAL MOVIE")) {
+			if (element[4].equals("THEATRICAL_MOVIE")) {
 				String movie_name = element[1];
 				String year = element[2];
 				String movie_number = element[3];
