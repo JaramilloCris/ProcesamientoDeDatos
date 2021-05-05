@@ -1,0 +1,36 @@
+Grupo 50 Laboratorio 3
+Vicente Ardiles S.
+Cristóbal Jaramillo
+Rodrigo Oportot
+
+hdfs dfs -cat /uhadoop2021/grupo_pachito/entrega_aidan_count3/part-r-00000 | grep -P "^s" | more
+
+1 -
+sandia	51
+
+2 -
+de      4921380
+la      2285040
+en      2161907
+el      1854882
+y       1536938
+a       816958
+del     793210
+es      785336
+que     775087
+los     727769
+
+3 - 
+Lyons, Eddie (I)##Moran, Lee (I)        168
+Nazir, Prem##Bhasi, Adoor       165
+Moran, Lee (I)##Lyons, Eddie (I)        153
+Bhasi, Adoor##Nazir, Prem       134
+Fine, Larry (I)##Howard, Moe (I)        122
+Howard, Moe (I)##Fine, Larry (I)        121
+Mercer, Jack##Questel, Mae      119
+Flowers, Bess##Miller, Harold (I)       116
+Miller, Harold (I)##Flowers, Bess       111
+Ali (I)##Brahmanandam   111
+
+4 -
+O'Sullivan, Anthony (I)##Sennett, Mack  63

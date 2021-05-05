@@ -301,7 +301,7 @@ public class InstantMessagingApp {
 		// This creates a remotely callable interface to your local server!
 		// (You can use the port 0 since the server is local.)
 
-		Remote stub = UnicastRemoteObject.exportObject(new UserDirectoryServer(), 0);
+		Remote stub = UnicastRemoteObject.exportObject(new InstantMessagingServer(), 0);
 
 		// now bind the skeleton to the registry under a key ...
 		// In this lab, we will use the static variable InstantMessagingServer.DEFAULT_KEY 
