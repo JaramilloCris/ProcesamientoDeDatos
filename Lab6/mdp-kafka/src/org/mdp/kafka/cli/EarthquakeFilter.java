@@ -8,11 +8,11 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.mdp.kafka.def.KafkaConstants;
-import org.mdp.kafka.sim.TwitterStream;
 
 import java.io.*;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.zip.GZIPInputStream;
@@ -58,7 +58,7 @@ public class EarthquakeFilter {
                         // 2017-09-19 05:17:00     2017-09-19 04:37:24     909999845930405888      41925129        QUOTE   es      Funcionario de Chiapas roba 90 colchonetas e impide que sean entregadas a damnificados por sismo. https://t.co/l7yLGp5cYM       10
                         if(lowercase.contains(ek)) {
                             String topic = args[1];
-                            producer.send(new ProducerRecord<String,String>(topic, 0, System.currentTimeMillis(), record.key(), record.value()));
+                            producer.send(new ProducerRecord<String,String>(topic, 0, record.timestamp(), record.key(), record.value()));
                             //prevents multiple print of the same tweet
                             break;
                         }

@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -24,8 +25,6 @@ public class BurstDetector {
         if(args.length==0 || args.length>2 || (args.length==2 && !args[1].equals("replay"))){
             System.err.println("Usage [inputTopic] [replay]");
             return;
-
-
         }
 
         Properties props = KafkaConstants.PROPS;
@@ -39,6 +38,14 @@ public class BurstDetector {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
         consumer.subscribe(Arrays.asList(args[0]));
 
+        final int X = 50;
+        final int MAYOR_Y = 25;
+        final int MINOR_Y = 50;
+        LinkedList<ConsumerRecord<String, String>> burst = new LinkedList<>();
+
+        int c = 0;
+        boolean mayor_burst = false;
+        boolean minor_burst = false;
         try{
             while (true) {
                 // every ten milliseconds get all records in a batch
@@ -46,19 +53,28 @@ public class BurstDetector {
 
                 // for all records in the batch
                 for (ConsumerRecord<String, String> record : records) {
-                    String lowercase = record.value().toLowerCase();
-
-                    // check if record value contains keyword
-                    // (could be optimised a lot)
-                    for(String ek: EARTHQUAKE_SUBSTRINGS){
-                        // if so print it out to the console
-                        if(lowercase.contains(ek)){
-                            System.out.println(record.value());
-                            //prevents multiple print of the same tweet
-                            break;
+                    burst.add(record);
+                    c+=1;
+                    if (c == X) {
+                        long k_inicial = burst.getFirst().timestamp()/1000;
+                        long k_ultimo = burst.getLast().timestamp()/1000;
+                        long dif = k_ultimo - k_inicial;
+                        // Burst Mayor -> Burst menor
+                        if (dif <= MAYOR_Y) {
+                            mayor_burst = true;
+                            minor_burst = true;
+                            System.out.println("MAYOR_BURST");
+                            System.out.println();
+                        // Burst Menor
+                        } else if (dif <= MINOR_Y && dif > MAYOR_Y) {
+                            minor_burst = true;
+                            System.out.println();
                         }
+                    } else if (c > X) {
+
                     }
                 }
+                System.out.println();
             }
         } finally{
             consumer.close();
